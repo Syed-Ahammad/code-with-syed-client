@@ -12,7 +12,7 @@ const Header = ({ toggleTheme }) => {
   };
   return (
     <div>
-      <div className="navbar bg-opacity-70">
+      <div className="navbar bg-orange-300 text-black">
         <div className="flex-1 ">
           <div className="p-2 items-center">
             <label className="swap swap-rotate">
@@ -56,10 +56,8 @@ const Header = ({ toggleTheme }) => {
             FAQ
           </Link>
 
-          <Link to={"/about"} className="btn btn-ghost mr-2 normal-case text-xl">
-            About
-          </Link>
           <Link
+          to={'/login'}
             onClick={handleUser}
             // to={"/logIn"}
             className={

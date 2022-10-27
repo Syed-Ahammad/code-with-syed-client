@@ -50,9 +50,6 @@ const Main = () => {
               <Link to={"/faq"}>FAQ</Link>
             </li>
             <li>
-              <Link to={"/about"}>About</Link>
-            </li>
-            <li>
               <Link
                 onClick={handleUser}
                 // to={"/logIn"}

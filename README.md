@@ -1,3 +1,8 @@
+### There are some steps of this project
+=> first Your need to create react app.
+=> then install all dev dependencis for  this projects
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,13 +1,38 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext);
+    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleCreateUser = (e) =>{
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photoURL = form.photoURL.value;
+    const password = form.password.value;
 
+    console.log(name, email, photoURL, password);
+
+    createUser(email, password)
+    .then((result) => {
+      const user = result.user;
+      console.log(user);
+      form.reset();
+      handleUpdateProfile(name, photoURL);
+      navigate("/home");
+    })
+    .catch((error) => console.error(error));
     }
+
+    const handleUpdateProfile = (name, photoURL) => {
+        const profile = { displayName: name, photoURL: photoURL };
+        updateUserProfile(profile)
+          .then((result) => console.log(result))
+          .catch((error) => console.error(error));
+      };
     return (
         <div className="flex items-center justify-center min-h-screen">
         <div className="px-8 py-6 mx-4 mt-4 text-left shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3">
@@ -26,23 +51,28 @@ const Register = () => {
                 <div className="mt-4">
                     <div>
                         <label className="block" htmlFor="Name">Name</label>
-                                <input type="text" placeholder="Name"
-                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" name='name'/>
+                                <input type="text" placeholder="Full Name"
+                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" name='name' required/>
+                    </div>
+                    <div className="mt-4">
+                        <label className="block" htmlFor="image">Photo URL</label>
+                                <input type="text" placeholder="Photo URL"
+                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" name='photoURL' required/>
                     </div>
                     <div className="mt-4">
                         <label className="block" htmlFor="email">Email</label>
                                 <input type="email" placeholder="Email"
-                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" name='email'/>
+                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" name='email'  required/>
                     </div>
                     <div className="mt-4">
                         <label className="block">Password</label>
                                 <input type="password" placeholder="Password"
                                     className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                    name='password'/>
+                                    name='password'  required/>
                     </div>
                
                     <div className="flex">
-                        <button className="w-full px-6 py-2 mt-4 bg-blue-600 rounded-lg hover:bg-blue-900">Create
+                        <button type="submit" className="w-full px-6 py-2 mt-4 bg-blue-600 rounded-lg hover:bg-blue-900">Create
                             Account</button>
                     </div>
                     <div className="mt-6 text-grey-dark">

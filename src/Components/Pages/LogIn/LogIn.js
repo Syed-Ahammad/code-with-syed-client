@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
@@ -8,6 +8,8 @@ const LogIn = () => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const { signInWithGoogle, signInWithGithub } = useContext(AuthContext);
 
@@ -17,7 +19,7 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -29,7 +31,7 @@ const LogIn = () => {
     signInWithGithub(githubProvider)
       .then((result) => {
         console.log(result.user);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const message = error.message;
@@ -88,13 +90,11 @@ const LogIn = () => {
                 Login
               </button>
               <span className="text-sm ml-2">
-                {" "}
                 Don't have account?
                 <Link
                   to={"/register"}
                   className="text-sm text-blue-600 hover:underline"
                 >
-                  {" "}
                   Register now!
                 </Link>
               </span>

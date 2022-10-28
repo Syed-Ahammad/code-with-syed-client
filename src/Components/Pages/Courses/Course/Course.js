@@ -16,7 +16,7 @@ const Course = ({ course }) => {
             Price: ${" "}
             <span className="text-orange-600 font-semibold">{price}</span>
           </p>
-         <Link to={'/course-details'}>
+         <Link to={`/course-details/${id}`}>
          <button className="btn btn-primary">
             <span className="mr-3">
               {" "}

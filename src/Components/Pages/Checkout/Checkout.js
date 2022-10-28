@@ -1,38 +1,85 @@
 import React from "react";
+import { FaBeer, FaCreditCard } from 'react-icons/fa';
+import { useLoaderData } from "react-router-dom";
 
 const Checkout = () => {
+  const {id, title, image, description, price} = useLoaderData();
+  
   return (
     <div className="grid grid-cols-2 gap-4 m-4">
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-md">
-            <h1 className="text-5xl font-bold">Hello there</h1>
+          <img
+            src={image}
+            className="max-w-sm rounded-lg shadow-2xl"
+          />
+            <h1 className="text-5xl font-bold">{title}</h1>
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+             {description}
             </p>
-            <button className="btn btn-primary">Get Started</button>
+           
           </div>
         </div>
       </div>
       <div>
-        <div className="card w-auto card-side m-auto bg-base-100 shadow-xl">
-          <figure>
-            <img src="https://placeimg.com/200/280/arch" alt="Movie" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">New movie is released!</h2>
-            <p>Click the button to watch on Jetflix app.</p>
-          </div>
-        </div>
         <div className="card w-auto m-auto mt-4 bg-base-100 shadow-xl">
           <div className="card-body">
-            <h2 className="card-title">Card title!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
+            <h2 className="card-title justify-center">Billing information</h2>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Your Name</span>
+              </label>
+              <label className="input">
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  className="input input-bordered"
+                />
+              </label>
             </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Your Email</span>
+              </label>
+              <label className="input">
+                <input
+                  type="text"
+                  placeholder="info@site.com"
+                  className="input input-bordered"
+                />
+              </label>
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Note</span>
+              </label>
+              <label className="input">
+                <input
+                  type="text"
+                  placeholder="Description"
+                  className="input input-bordered"
+                />
+              </label>
+            </div>
+            <h2 className="card-title justify-center">Payment Mathod</h2>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Enter amount</span>
+              </label>
+              <label className="input-group">
+                <span>Card </span>
+                
+                <input
+                  type="text"
+                  placeholder="Card Number"
+                  className="input input-bordered"
+                />
+                <span>MM/YY CVC</span>
+              </label>
+            </div>
+            <button className="btn btn-primary text-2xl">Pay: {price} $</button>
           </div>
         </div>
       </div>

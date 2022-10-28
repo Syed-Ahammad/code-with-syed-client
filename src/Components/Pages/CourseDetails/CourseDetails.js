@@ -1,23 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const CourseDetails = () => {
+  const {id, title, image, description} = useLoaderData();
+  
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
           <img
-            src="https://placeimg.com/260/400/arch"
+            src={image}
             className="max-w-sm rounded-lg shadow-2xl"
           />
           <div>
-            <h1 className="text-5xl font-bold">Box Office News!</h1>
+            <h1 className="text-5xl font-bold">{title}</h1>
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+             {description}
             </p>
-            <Link to={'/checkout'}><button className="btn btn-primary">Click on Checkout</button></Link>
+            <Link to={`/checkout/${id}`}><button className="btn btn-primary">Click on Checkout</button></Link>
           </div>
         </div>
       </div>

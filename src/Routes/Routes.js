@@ -9,6 +9,7 @@ import FAQ from '../Components/Pages/FAQ/FAQ';
 import Home from '../Components/Pages/Home/Home';
 import LogIn from '../Components/Pages/LogIn/LogIn';
 import Register from '../Components/Pages/Register/Register';
+import PrivateRoutes from './PrivateRoutes/PrivateRoutes';
 
 export const router = createBrowserRouter([
     {
@@ -46,11 +47,13 @@ export const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: '/checkout',
-                element: <Checkout></Checkout>
+                path: '/checkout/:id',
+                loader: async ({params})=> fetch(`https://courses-server-side.vercel.app/courses/${params.id}`),
+                element: <PrivateRoutes><Checkout></Checkout></PrivateRoutes>
             },
             {
-                path: '/course-details',
+                path: '/course-details/:id',
+                loader: async ({params})=> fetch(`https://courses-server-side.vercel.app/courses/${params.id}`),
                 element: <CourseDetails></CourseDetails>
             }
         ]

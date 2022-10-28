@@ -4,7 +4,6 @@ import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Header = ({ toggleTheme }) => {
   const { user, logOut } = useContext(AuthContext);
-
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -59,37 +58,38 @@ const Header = ({ toggleTheme }) => {
           <Link to={"/faq"} className="btn btn-ghost mr-2 normal-case text-xl">
             FAQ
           </Link>
+          {user ? (
+            <Link
+              onClick={handleLogOut}
+              className="btn btn-ghost mr-2 normal-case text-xl"
+            >
+              Sign Out
+            </Link>
+          ) : (
+            <Link
+              to={"/login"}
+              // to={"/logIn"}
+              className="btn btn-ghost mr-2 normal-case text-xl"
+            >
+              Log In
+            </Link>
+          )}
 
-          <Link
-            to={"/login"}
-            // to={"/logIn"}
-            className={
-              "btn btn-ghost mr-2 normal-case text-xl " +
-              (user ? "hidden " : " ")
-            }
-          >
-            Log In
-          </Link>
-          <Link
-            onClick={handleLogOut}
-            className={
-              "btn btn-ghost mr-2 normal-case text-xl " +
-              (user ? " " : "hidden")
-            }
-          >
-            Sign Out
-          </Link>
-
-          <div
-            className={"avatar online placeholder " + (user ? " " : "hidden")}
-          >
-            <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-              <img
-                className="mask mask-circle"
-                src="https://placeimg.com/160/160/arch"
-              />
+          {user?.displayName ? (
+           <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
+             <div
+              className="avatar online placeholder"
+            >
+              <div
+                className="bg-neutral-focus text-neutral-content rounded-full w-10"
+              >
+                <img className="mask mask-circle" src={user?.photoURL} />
+              </div>
             </div>
-          </div>
+           </div>
+          ) : (
+           <></>
+          )}
         </div>
 
         <div className="flex-none">

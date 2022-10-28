@@ -21,24 +21,20 @@ const Register = () => {
                     <div>
                         <label className="block" for="Name">Name</label>
                                 <input type="text" placeholder="Name"
-                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
+                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" name='name'/>
                     </div>
                     <div className="mt-4">
                         <label className="block" for="email">Email</label>
-                                <input type="text" placeholder="Email"
-                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
+                                <input type="email" placeholder="Email"
+                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" name='email'/>
                     </div>
                     <div className="mt-4">
                         <label className="block">Password</label>
                                 <input type="password" placeholder="Password"
-                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
+                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                    name='password'/>
                     </div>
-                    <div className="mt-4">
-                        <label className="block">Confirm Password</label>
-                                <input type="password" placeholder="Password"
-                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
-                    </div>
-                    {/* <span className="text-xs text-red-400">{}</span> */}
+               
                     <div className="flex">
                         <button className="w-full px-6 py-2 mt-4 bg-blue-600 rounded-lg hover:bg-blue-900">Create
                             Account</button>

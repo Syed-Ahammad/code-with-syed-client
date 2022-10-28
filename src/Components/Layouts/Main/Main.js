@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 
 const Main = () => {
   const [user, setUser] = useState(false);
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState(true);
 
   const toggleTheme = () => {
     if (theme) {

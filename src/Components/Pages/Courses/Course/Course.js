@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Course = ({ course }) => {
   const { title, id, price, description, image } = course;
@@ -15,7 +16,8 @@ const Course = ({ course }) => {
             Price: ${" "}
             <span className="text-orange-600 font-semibold">{price}</span>
           </p>
-          <button className="btn btn-primary">
+         <Link to={'/course-details'}>
+         <button className="btn btn-primary">
             <span className="mr-3">
               {" "}
               <svg
@@ -33,8 +35,8 @@ const Course = ({ course }) => {
                 />
               </svg>
             </span>
-            Enroll in Course
-          </button>
+            Click on Details
+          </button></Link>
           
         </div>
       </div>

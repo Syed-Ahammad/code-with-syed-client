@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
@@ -37,6 +38,10 @@ const updateUserProfile = (profile)=>{
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
+  const signIn = (email, password)=>{
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+};
 
 //   function of user sign out
   const logOut = () => {
@@ -57,7 +62,7 @@ const updateUserProfile = (profile)=>{
     };
   });
 
-  const authInfo = { user, createUser, loading, updateUserProfile, signInWithGoogle, signInWithGithub, logOut };
+  const authInfo = { user, createUser, loading, signIn, updateUserProfile, signInWithGoogle, signInWithGithub, logOut };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

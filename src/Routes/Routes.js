@@ -32,6 +32,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/blogs',
+                loader: async () => fetch('https://courses-server-side.vercel.app/blogs'),
                 element: <Blogs></Blogs>
             },
             {

@@ -11,7 +11,28 @@ const LogIn = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const { signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+  const { signInWithGoogle, signInWithGithub, signIn } = useContext(AuthContext);
+
+  //  sign in mathod
+  const handleSignIn = (event)=>{
+    event.preventDefault()
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password)
+    signIn(email, password)
+    .then(result =>{
+        const user = result.user;
+        console.log(user);
+        form.reset()
+        navigate(from, { replace: true });
+       
+       
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
 
   // google sign in mathod
   const handleGoogleSignIn = () => {
@@ -62,13 +83,14 @@ const LogIn = () => {
         <h3 className="text-2xl font-bold text-center">
           Login to your account
         </h3>
-        <form action="">
+        <form onSubmit={handleSignIn} action="">
           <div className="mt-4">
             <div>
               <label className="block" htmlFor="email">
                 Email
               </label>
               <input
+              name="email"
                 type="text"
                 placeholder="Email"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -78,7 +100,7 @@ const LogIn = () => {
             </div>
             <div className="mt-4">
               <label className="block">Password</label>
-              <input
+              <input name="password"
                 type="password"
                 placeholder="Password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -86,7 +108,7 @@ const LogIn = () => {
               />
             </div>
             <div className="flex items-baseline justify-between">
-              <button className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
+              <button type="submit" className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
                 Login
               </button>
               <span className="text-sm ml-2">
